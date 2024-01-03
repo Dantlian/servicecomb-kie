@@ -7,11 +7,7 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
-	"sync"
 )
-
-var mutexMap = make(map[string]*sync.Mutex)
-var mutexLock = &sync.Mutex{}
 
 var FileRootPath = "/data/kvs"
 
@@ -82,7 +78,7 @@ func CreateOrUpdateFile(filepath string, content []byte, rollbackOperations []Fi
 		rollbackOperations = append(rollbackOperations, FileDoRecord{filepath: filepath, content: nil})
 	}
 
-	err = os.WriteFile(filepath, content, 0666)
+	err = os.WriteFile(filepath, content, 0600)
 	if err != nil {
 		log.Error("failed to create file " + filepath + ", " + err.Error())
 		return err

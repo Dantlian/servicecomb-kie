@@ -406,9 +406,9 @@ func matchLabelsSearchLocally(ctx context.Context, domain, project string, regex
 			continue
 		}
 
-		//if !filterMatch(&doc, opts, regex) {
-		//	continue
-		//}
+		if !filterMatch(&doc, opts, regex) {
+			continue
+		}
 		bytes, _ := json.Marshal(doc)
 		var docDeepCopy model.KVDoc
 		json.Unmarshal(bytes, &docDeepCopy)

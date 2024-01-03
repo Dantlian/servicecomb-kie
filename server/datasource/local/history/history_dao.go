@@ -22,6 +22,7 @@ import (
 	"encoding/json"
 	"github.com/apache/servicecomb-kie/server/datasource/local/file"
 	"path"
+	"strconv"
 
 	"github.com/apache/servicecomb-kie/server/datasource/auth"
 	"github.com/go-chassis/openlog"
@@ -124,7 +125,7 @@ func (s *Dao) historyRotate(ctx context.Context, kvID, project, domain string) e
 
 	for _, kv := range kvs {
 		revision := kv.UpdateRevision
-		revisionFilePath := path.Join(file.FileRootPath, domain, project, kvID, string(revision)+".json")
+		revisionFilePath := path.Join(file.FileRootPath, domain, project, kvID, strconv.FormatInt(revision, 10)+".json")
 		revisionFiles = append(revisionFiles, revisionFilePath)
 		err = file.DeleteFile(revisionFilePath, []file.FileDoRecord{})
 		if err != nil {
