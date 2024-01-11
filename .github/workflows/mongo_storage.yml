@@ -1,4 +1,4 @@
-name: Merge check
+name: Merge check for Mongo
 on: [push, pull_request]
 jobs:
   mongo-storage:
