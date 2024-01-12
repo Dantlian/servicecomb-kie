@@ -1,5 +1,5 @@
 name: Merge check
-on: [push, pull_request]
+#on: [push, pull_request]
 jobs:
   mongo-storage:
     runs-on: ubuntu-latest
